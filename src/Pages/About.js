@@ -1,18 +1,15 @@
-import { useState } from "react";
-
-import SnackBar from "../Components/SnackBar";
+import { useSnackBar } from "../useSnackBar";
 
 const About = () => {
-  const [message, setMessage] = useState();
+  const { addMessage } = useSnackBar();
 
   const hanldeClick = () => {
-    setMessage("about alert");
+    addMessage("About alert");
   };
   return (
     <>
       <h1>About</h1>
       <button onClick={hanldeClick}>alert</button>
-      <SnackBar message={message} />
     </>
   );
 };
