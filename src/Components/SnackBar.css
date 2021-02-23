@@ -1,0 +1,9 @@
+.snack-bar {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  max-width: 400px;
+  background-color: dimgrey;
+  color: deepskyblue;
+  padding: 10px 50px;
+}
