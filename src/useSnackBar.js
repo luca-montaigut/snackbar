@@ -1,4 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, {
+  useState,
+  useEffect,
+  useContext,
+  useCallback,
+  useMemo,
+} from "react";
+import SnackBar from "./Components/SnackBar";
 
 const SnackBarContext = React.createContext(undefined);
 
@@ -15,9 +22,9 @@ export const useSnackBar = () => {
 export const SnackBarProvider = ({ children }) => {
   const [messages, setMessages] = useState([]);
 
-  const addMessage = (message) => {
-    setMessages([message, ...messages]);
-  };
+  const addMessage = useCallback((message) => {
+    setMessages((previousMessages) => [message, ...previousMessages]);
+  }, []);
 
   useEffect(() => {
     if (messages.length > 0) {
@@ -29,11 +36,14 @@ export const SnackBarProvider = ({ children }) => {
     }
   }, [messages.length]);
 
-  const value = { addMessage, messages };
+  const value = useMemo(() => {
+    return { addMessage };
+  }, [addMessage]);
 
   return (
     <SnackBarContext.Provider value={value}>
       {children}
+      <SnackBar messages={messages} />
     </SnackBarContext.Provider>
   );
 };

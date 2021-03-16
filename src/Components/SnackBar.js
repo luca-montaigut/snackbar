@@ -1,10 +1,6 @@
-import { useSnackBar } from "../useSnackBar";
-
 import "./SnackBar.css";
 
-const SnackBar = () => {
-  const { messages } = useSnackBar();
-
+const SnackBar = ({ messages }) => {
   if (messages.length < 1) {
     return null;
   }

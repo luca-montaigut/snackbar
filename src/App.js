@@ -5,7 +5,6 @@ import Home from "./Pages/Home";
 import About from "./Pages/About";
 import Users from "./Pages/Users";
 import { SnackBarProvider } from "./useSnackBar";
-import SnackBar from "./Components/SnackBar";
 
 import Header from "./Components/Header";
 import Container from "./Components/Container";
@@ -28,7 +27,6 @@ export default function App() {
                 <Home />
               </Route>
             </Switch>
-            <SnackBar />
           </SnackBarProvider>
         </Container>
       </div>
