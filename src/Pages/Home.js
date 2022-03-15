@@ -4,7 +4,7 @@ const Home = () => {
   const { addMessage } = useSnackBar();
 
   const hanldeClick = () => {
-    addMessage("Home alert");
+    addMessage("Home alert" + Math.random().toString());
   };
   return (
     <>
