@@ -14,14 +14,17 @@ export const useSnackBar = () => {
 };
 
 export const SnackBarProvider = ({ children }) => {
-  const [messages, setMessages] = useState([]);
+  const [toasts, setToasts] = useState([]);
 
   const addMessage = useCallback((message) => {
-    setMessages((previousMessages) => [message, ...previousMessages]);
-    setTimeout(
-      () => setMessages((messages) => messages.slice(0, messages.length - 1)),
+    const timer = setTimeout(
+      () => setToasts((messages) => messages.slice(0, messages.length - 1)),
       5000
     );
+    setToasts((previousMessages) => [
+      { message, timerRef: timer },
+      ...previousMessages,
+    ]);
   }, []);
 
   const value = useMemo(() => {
@@ -31,7 +34,7 @@ export const SnackBarProvider = ({ children }) => {
   return (
     <SnackBarContext.Provider value={value}>
       {children}
-      <SnackBar messages={messages} />
+      <SnackBar toasts={toasts} />
     </SnackBarContext.Provider>
   );
 };

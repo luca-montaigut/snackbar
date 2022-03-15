@@ -1,12 +1,12 @@
 import "./SnackBar.css";
 
-const SnackBar = ({ messages }) => {
-  if (messages.length < 1) {
+const SnackBar = ({ toasts }) => {
+  if (toasts.length < 1) {
     return null;
   }
   return (
     <div className="snack-bar">
-      {messages.map((message) => (
+      {toasts.map(({ message }) => (
         <p>{message}</p>
       ))}
     </div>
